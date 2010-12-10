@@ -1,6 +1,6 @@
 Name: libspatialite
 Version: 2.3.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: SpatiaLite extension enables SQLite to support spatial data 
 Group: System/Libraries
 License: MPL
