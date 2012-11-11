@@ -1,0 +1,13 @@
+Index: libspatialite-3.0.1/src/Makefile.in
+===================================================================
+--- libspatialite-3.0.1.orig/src/Makefile.in
++++ libspatialite-3.0.1/src/Makefile.in
+@@ -34,7 +34,7 @@ PRE_UNINSTALL = :
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+-@MINGW_FALSE@am__append_1 = -lpthread -ldl
++@MINGW_FALSE@am__append_1 = -lpthread -ldl -lm
+ subdir = src
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
