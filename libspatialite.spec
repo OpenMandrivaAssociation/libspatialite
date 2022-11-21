@@ -13,6 +13,7 @@ BuildRequires:	freexl-devel
 BuildRequires:	geos-devel
 BuildRequires:	proj-devel
 BuildRequires:	pkgconfig(rttopo)
+BuildRequires:	pkgconfig(libxml-2.0)
 
 %description
 Core package.
