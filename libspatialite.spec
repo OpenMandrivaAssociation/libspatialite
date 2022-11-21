@@ -73,6 +73,11 @@ Devel files for spatialite library
 %prep
 %autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}
 autoreconf -fi
+if echo %{optflags} |grep -E -- '-O[sz] '; then
+	# _Float32 doesn't like -Os
+	export CFLAGS="%{optflags} -O3"
+	export CXXFLAGS="%{optflags} -O3"
+fi
 %configure
 
 %build
