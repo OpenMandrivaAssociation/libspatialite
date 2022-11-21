@@ -1,26 +1,26 @@
-%define	beta	RC2
+#define	beta	RC2
 
 Name:		libspatialite
-Version:	3.1.0
-Release:	0.%{beta}.1
+Version:	5.0.1
+Release:	%{?beta:0.%{beta}.}1
 Summary:	SpatiaLite extension enables SQLite to support spatial data 
 Group:		System/Libraries
 License:	MPL
 URL:		http://www.gaia-gis.it
-Source0:	%{name}-%{version}-%{beta}.tar.gz
-Patch0:		libspatialite-3.1.0-RC2-linkage.patch
+Source0:	http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-%{version}%{?beta:-%{beta}}.tar.gz
 BuildRequires:	sqlite3-devel
 BuildRequires:	freexl-devel
 BuildRequires:	geos-devel
 BuildRequires:	proj-devel
+BuildRequires:	pkgconfig(rttopo)
 
 %description
 Core package.
 
 #-------------------------------------------------------------------------------------
 
-%define major 3
-%define libname %mklibname spatialite %{major}
+%define major 7
+%define libname %mklibname spatialite
 
 %package -n	%{libname}
 Summary:	SpatiaLite extension enables SQLite to support spatial data
@@ -44,6 +44,9 @@ Touches(), Union(), Buffer() ..
 
 %files -n %{libname}
 %{_libdir}/libspatialite.so.%{major}*
+%{_libdir}/mod_spatialite.so.%{major}*
+%{_libdir}/libspatialite.so
+%{_libdir}/mod_spatialite.so
 
 #-------------------------------------------------------------------------------------
 
@@ -61,37 +64,17 @@ Devel files for spatialite library
 
 %files -n %{develname}
 %{_includedir}/*
-%{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
 #-------------------------------------------------------------------------------------
 
-%define develname_static %mklibname -d -s spatialite
-
-%package -n	%{develname_static}
-Summary:	Devel files for spatialite library
-Group:		Development/C
-Provides:	%{name}-static-devel = %{version}-%{release}
-Provides:	spatialite-static-devel =  %{version}-%{release}
-Requires:	%{develname} = %{version}-%{release}
-
-%description -n	%{develname_static}
-Devel files for spatialite library
-
-%files -n %{develname_static}
-%{_libdir}/*.a
-
-#-------------------------------------------------------------------------------------
-
 %prep
-%setup -q -n %{name}-%{version}-%{beta}
-%patch0 -p1
+%autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}
+autoreconf -fi
+%configure
 
 %build
-autoreconf -fi
-%configure2_5x
-%make
+%make_build
 
 %install
-%makeinstall_std
-
+%make_install
