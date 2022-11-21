@@ -14,6 +14,7 @@ BuildRequires:	geos-devel
 BuildRequires:	proj-devel
 BuildRequires:	pkgconfig(rttopo)
 BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(minizip)
 
 %description
 Core package.
