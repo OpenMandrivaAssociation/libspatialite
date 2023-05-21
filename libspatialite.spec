@@ -2,7 +2,7 @@
 
 Name:		libspatialite
 Version:	5.0.1
-Release:	%{?beta:0.%{beta}.}1
+Release:	%{?beta:0.%{beta}.}2
 Summary:	SpatiaLite extension enables SQLite to support spatial data 
 Group:		System/Libraries
 License:	MPL
