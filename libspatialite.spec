@@ -1,13 +1,14 @@
 #define	beta	RC2
 
 Name:		libspatialite
-Version:	5.0.1
-Release:	%{?beta:0.%{beta}.}2
+Version:	5.1.0
+Release:	%{?beta:0.%{beta}.}1
 Summary:	SpatiaLite extension enables SQLite to support spatial data 
 Group:		System/Libraries
 License:	MPL
 URL:		http://www.gaia-gis.it
 Source0:	http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-%{version}%{?beta:-%{beta}}.tar.gz
+Patch1:		libspatialite_pkgconfig.patch
 BuildRequires:	sqlite3-devel
 BuildRequires:	freexl-devel
 BuildRequires:	geos-devel
@@ -21,7 +22,7 @@ Core package.
 
 #-------------------------------------------------------------------------------------
 
-%define major 7
+%define major 8
 %define libname %mklibname spatialite
 
 %package -n	%{libname}
