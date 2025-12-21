@@ -9,6 +9,11 @@ License:	MPL
 URL:		https://www.gaia-gis.it
 Source0:	http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-%{version}%{?beta:-%{beta}}.tar.gz
 Patch1:		libspatialite_pkgconfig.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	sqlite3-devel
 BuildRequires:	freexl-devel
 BuildRequires:	geos-devel
