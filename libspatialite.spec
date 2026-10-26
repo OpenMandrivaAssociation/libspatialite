@@ -78,9 +78,9 @@ Devel files for spatialite library
 
 %prep
 %autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}
-# libxml2 2.15 declares xmlNanoHTTPCleanup only from nanohttp.h.
+# libxml2 2.15 removed the nanoHTTP client. The only call is a cleanup.
 for f in $(grep -rl xmlNanoHTTPCleanup --include='*.c' .); do
-	grep -q nanohttp.h "$f" || sed -i '1i #include <libxml/nanohttp.h>' "$f"
+	sed -i '1i #define xmlNanoHTTPCleanup() ((void)0)' "$f"
 done
 autoreconf -fi
 if echo %{optflags} |grep -E -- '-O[sz] '; then
