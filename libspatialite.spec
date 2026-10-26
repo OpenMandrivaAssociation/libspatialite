@@ -88,7 +88,8 @@ if echo %{optflags} |grep -E -- '-O[sz] '; then
 	export CFLAGS="%{optflags} -O3"
 	export CXXFLAGS="%{optflags} -O3"
 fi
-%configure
+# Examples link -lspatialite from src/ instead of src/.libs, which slibtool does not populate.
+%configure --disable-examples
 
 %build
 %make_build
