@@ -78,6 +78,10 @@ Devel files for spatialite library
 
 %prep
 %autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}
+# libxml2 2.15 declares xmlNanoHTTPCleanup only from nanohttp.h.
+for f in $(grep -rl xmlNanoHTTPCleanup --include='*.c' .); do
+	grep -q nanohttp.h "$f" || sed -i '1i #include <libxml/nanohttp.h>' "$f"
+done
 autoreconf -fi
 if echo %{optflags} |grep -E -- '-O[sz] '; then
 	# _Float32 doesn't like -Os
